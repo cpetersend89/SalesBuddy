@@ -1,0 +1,66 @@
+﻿@model SalesBuddy.Controllers.Goal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Goal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutoGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MortgageGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MortgageGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditCardGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditCardGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckingGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GoalId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

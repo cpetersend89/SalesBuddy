@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SalesBuddy.Controllers.Goal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoGoal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MortgageGoal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCardGoal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckingGoal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoGoal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MortgageGoal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditCardGoal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckingGoal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GoalId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GoalId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GoalId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
+using Owin.Security.Providers.Salesforce;
 using Owin;
 using SalesBuddy.Models;
 
@@ -11,6 +12,7 @@ namespace SalesBuddy
 {
     public partial class Startup
     {
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -44,6 +46,19 @@ namespace SalesBuddy
             // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+
+            var options = new SalesforceAuthenticationOptions
+            {
+                ClientId = "3MVG9uudbyLbNPZODiKsxXr8SMyGbRmYPaVTqBepnJwZj9tFyVCUe.5I2r5P9oZJDqXdrXOA0fT1ZPit5avRj",
+                ClientSecret = "cadbc018229e40d581ef98917f07c25a",
+                Endpoints = new SalesforceAuthenticationOptions.SalesforceAuthenticationEndpoints
+                {
+                    AuthorizationEndpoint = "https://sales-buddy-dev-ed.my.salesforce.com/services/oauth2/authorize",
+                    TokenEndpoint = "https://sales-buddy-dev-ed.my.salesforce.com/services/oauth2/token"
+                }
+            };
+            app.UseSalesforceAuthentication(options);
+
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(

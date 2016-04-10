@@ -1,4 +1,4 @@
-﻿@model SalesBuddy.Models.Salesforce.Lead
+﻿@model SalesBuddy.Models.LeadViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -107,14 +107,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Status)
         </dt>
 
@@ -131,11 +123,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedById)
+            @Html.DisplayNameFor(model => model.UserEmail__c)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatedById)
+            @Html.DisplayFor(model => model.UserEmail__c)
         </dd>
 
         <dt>

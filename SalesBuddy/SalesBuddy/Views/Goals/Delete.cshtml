@@ -1,0 +1,72 @@
+﻿@model SalesBuddy.Controllers.Goal
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Goal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutoGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MortgageGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MortgageGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditCardGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditCardGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingGoal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckingGoal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

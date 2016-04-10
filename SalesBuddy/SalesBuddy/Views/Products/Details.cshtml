@@ -1,0 +1,74 @@
+﻿@model SalesBuddy.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ProductType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductType)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoLoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutoLoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MortgageLoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MortgageLoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckingAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

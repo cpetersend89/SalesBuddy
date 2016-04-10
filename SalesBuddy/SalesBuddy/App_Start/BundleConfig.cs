@@ -20,11 +20,17 @@ namespace SalesBuddy
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/bootstrap-datepicker.js",
+                "~/Scripts/DatePickerReady.js",
+                "~/Scripts/jquery-ui.js",
+                "~/Scripts/jquery-ui.min.js",
+                "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/agency.css",
                       "~/Content/bootstrap.css",
+                      "~/Content/jquery-ui.min.css",
                       "~/Content/site.css"));
         }
     }

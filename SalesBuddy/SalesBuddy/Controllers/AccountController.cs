@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -9,12 +11,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SalesBuddy.Models;
+using Salesforce.Common;
+using Salesforce.Common.Models;
 
 namespace SalesBuddy.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private static ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -68,6 +73,8 @@ namespace SalesBuddy.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -151,7 +158,7 @@ namespace SalesBuddy.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -421,6 +428,11 @@ namespace SalesBuddy.Controllers
             }
 
             base.Dispose(disposing);
+        }
+        public static List<ApplicationUser> GetUserNames()
+        {
+            var userNames = db.Users;
+            return userNames.ToList();
         }
 
         #region Helpers

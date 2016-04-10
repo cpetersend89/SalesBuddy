@@ -1,0 +1,92 @@
+﻿@model IEnumerable<SalesBuddy.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br /><br /><br />
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <p>
+            @Html.ActionLink("Add Closed Production", "Create")
+        </p>
+    }
+}
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.ProductType)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoLoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MortgageLoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckingAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ProductType)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutoLoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MortgageLoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckingAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
+                    }
+                }
+                
+                |  @Html.ActionLink("Details", "Details", new { id = item.ProductId })  |
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                    }
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

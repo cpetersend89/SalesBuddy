@@ -818,6 +818,16 @@ img::-moz-selection {
     border: 1px;
     border-radius: 20px;
 }
+.manageusers {
+    background-image: url(../img/ManageUsers.jpg);
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 150px;
+    display: block;
+    text-indent: -9999px;
+    border: 1px;
+    border-radius: 20px;
+}
 .leads {
     background-image: url(../img/Leads.jpg);
     background-repeat: no-repeat;

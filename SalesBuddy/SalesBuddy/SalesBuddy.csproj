@@ -504,6 +504,7 @@
     <Content Include="img\Goals.jpg" />
     <Content Include="img\header-bg.jpg" />
     <Content Include="img\Leads.jpg" />
+    <Content Include="img\ManageUsers.jpg" />
     <Content Include="img\Sales.jpg" />
     <Content Include="Scripts\agency.js" />
     <Content Include="Scripts\bootstrap.js" />

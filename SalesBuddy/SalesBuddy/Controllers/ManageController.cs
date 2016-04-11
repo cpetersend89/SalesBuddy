@@ -14,6 +14,7 @@ namespace SalesBuddy.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -106,6 +107,7 @@ namespace SalesBuddy.Controllers
         {
             return View();
         }
+
 
         //
         // POST: /Manage/AddPhoneNumber
@@ -319,6 +321,27 @@ namespace SalesBuddy.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+        public ActionResult ManageUsers()
+        {
+            var users = AccountController.GetUserNames();
+
+            return View(users);
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult Details()
+        {
+            return View();
+        }
+
+        public ActionResult Delete()
+        {
+            return View();
         }
         public ActionResult _Column()
         {

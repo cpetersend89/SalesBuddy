@@ -33,10 +33,13 @@ namespace SalesBuddy.Models
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Goal> Goals { get; set; }
+        public DbSet<TextEditor> Messages { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<SalesBuddy.Models.ManageUsersViewModel> ManageUsersViewModels { get; set; }
     }
 }

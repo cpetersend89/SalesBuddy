@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using SalesBuddy.Models;
@@ -54,8 +55,8 @@ namespace SalesBuddy.Controllers
         public async Task<ActionResult> Index()
         {
             ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            var adminSalesList = db.Products.ToList();
-            var userSalesList = db.Products.Where(x => x.UserEmail == user.UserName).ToList();
+            var adminSalesList = db.Products.OrderByDescending(x => x.CreatedDate).ToList();
+            var userSalesList = db.Products.Where(x => x.UserEmail == user.UserName).OrderByDescending(x => x.CreatedDate).ToList();
             if(User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("admin"))

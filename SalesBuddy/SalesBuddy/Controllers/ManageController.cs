@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -318,6 +319,42 @@ namespace SalesBuddy.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+        public ActionResult _Column()
+        {
+            return View();
+        }
+
+        public JsonResult GetSalesData()
+        {
+            List<Goal> goals = new List<Goal>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                goals = db.Goals.ToList();
+            }
+
+            var chartData = new object[goals.Count + 1];
+            chartData[0] = new object[]
+            {
+                "Auto Goal",
+                "Auto Actual",
+                "Mortgage Goal",
+                "Mortgage Actual",
+                "Credit Card Goal",
+                "Credit Card Actual",
+                "Checking Goal",
+                "Checking Actual"
+            };
+            int j = 0;
+            foreach (var goal in goals)
+            {
+                j++;
+                chartData[j] = new object[]
+                {
+                    goal.AutoGoal, goal.AutoActual, goal.MortgageGoal, goal.MortgageActual, goal.CreditCardGoal, goal.CreditCardActual, goal.CheckingGoal, goal.CheckingActual
+                };
+            }
+            return new JsonResult { Data = chartData, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         protected override void Dispose(bool disposing)

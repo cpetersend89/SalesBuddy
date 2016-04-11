@@ -1,61 +1,15 @@
-﻿@using SalesBuddy.Models
-@model dynamic
-@{
-    ViewBag.Title = "Manage";
-}
-<br/><br/><br/>
-
-<div class="container" id="visualization" style="width: 1200px; height: 300px">
+﻿<div id="visualization" style="width: 600px; height: 300px">
 
 </div>
-<br/><br/><br/>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
-
-<p class="text-success">@ViewBag.StatusMessage</p>
-
-
-<div>
-    
-    <hr/>
-    <table class="tlinks">
-        <tr>
-            <td>
-                @Html.ActionLink("View Sales", "Index", "Products", null, new {@class = "sales"})
-            </td>
-            <td>
-                @Html.ActionLink("View Goals", "Index", "Goals", null, new {@class = "goals"})
-            </td>
-            <td>
-                @Html.ActionLink("View Leads", "Index", "Leads", null, new {@class = "leads"})
-            </td>
-            <td>
-                @if (Model.HasPassword)
-                {
-                    @Html.ActionLink("Change your password", "ChangePassword", null, new {@class = "changepassword"})
-                }
-                else
-                {
-                    @Html.ActionLink("Create", "SetPassword")
-                }
-            </td>
-
-            <td>
-                @Html.ActionLink("View Sales", "Column", "Chart", null, new {@class = "sales"})
-            </td>
-        </tr>
-    </table>
-
-</div>
-
 @section Scripts{
     <script>
         $(document).ready(function() {
             //Load Data Here
             var chartData = null;
             $.ajax({
-                url: '/Manage/GetSalesData',
+                url: '/Chart/GetSalesData',
                 type: 'GET',
                 dataType: 'json',
                 data: '',
@@ -93,26 +47,25 @@
                     label: data.getColumnLabel(3),
                     calc: function() { return 0; }
                 }
-
             ]);
             var chart = new google.visualization.ColumnChart(document.getElementById('visualization'));
             var options = {
                 title: 'Sales Report',
                 legend: 'bottom',
                 hAxis: {
-                    title: 'Products'
+                    title: 'Year'
 
                 },
                 vAxis: {
                     minValue: 0,
-                    maxValue: 200000,
+                    maxValue: 1000000,
                     title: 'Sales Amount'
                 },
                 charArea: {
                     left: 100,
-                    top: 100,
-                    width: '100%',
-                    height: '100%'
+                    top: 50,
+                    width: '70%',
+                    height: '50%'
                 },
                 animation: {
                     duration: 1000
@@ -121,7 +74,7 @@
 
             var runFirstTime = google.visualization.events.addListener(chart, 'ready', function() {
                 google.visualization.events.removeListener(runFirstTime);
-                chart.draw(data, options);
+                chartData.drawArrays(data, options);
             });
 
             chart.draw(view, options);

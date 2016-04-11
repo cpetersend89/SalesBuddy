@@ -6,7 +6,7 @@ using System.Web;
 using SalesBuddy.Models;
 using SalesBuddy.Models.Salesforce1;
 
-namespace SalesBuddy.Controllers
+namespace SalesBuddy.Models
 {
     public class Goal
     {

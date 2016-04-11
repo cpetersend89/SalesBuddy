@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -10,9 +7,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using SalesBuddy.Models;
-using SalesBuddy.Models.Salesforce1;
-using SalesBuddy.Salesforce1;
-using Salesforce.Common.Models;
 
 namespace SalesBuddy.Controllers
 {

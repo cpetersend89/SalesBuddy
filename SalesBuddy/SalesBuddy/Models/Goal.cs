@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using SalesBuddy.Models;
+using SalesBuddy.Models.Salesforce1;
 
 namespace SalesBuddy.Controllers
 {
@@ -11,6 +12,9 @@ namespace SalesBuddy.Controllers
     {
         [Key]
         public int GoalId { get; set; }
+        [Display(Name = "Employee")]
+        [EmailAddress]
+        public string UserEmail { get; set; }
 
         [Display(Name = "Auto Goal")]
         [DataType(DataType.Currency)]
@@ -18,9 +22,10 @@ namespace SalesBuddy.Controllers
 
         [Display(Name = "Auto Actual")]
         [DataType(DataType.Currency)]
-        public Product AutoActual { get; set; }
+        public decimal AutoActual { get; set; }
 
-        [Display(Name = "Percentage")]
+        [DisplayFormat(DataFormatString = "{0:0.##}%")]
+        [Display(Name = "Auto Percentage")]
         public decimal AutoPercentage { get; set; }
 
         [Display(Name = "Mortgage Goal")]
@@ -29,7 +34,11 @@ namespace SalesBuddy.Controllers
 
         [Display(Name = "Mortgage Actual")]
         [DataType(DataType.Currency)]
-        public Product MortgageActual { get; set; }
+        public decimal MortgageActual { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:0.##}%")]
+        [Display(Name = "Mortgage Percentage")]
+        public decimal MortgagePercentage { get; set; }
 
         [Display(Name = "Credit Card Goal")]
         [DataType(DataType.Currency)]
@@ -37,18 +46,28 @@ namespace SalesBuddy.Controllers
 
         [Display(Name = "Credit Card Actual")]
         [DataType(DataType.Currency)]
-        public Product CreditCardActual { get; set; }
+        public decimal CreditCardActual { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0.##}%")]
+        [Display(Name = "Credit Percentage")]
+        public decimal CreditCardPercentage { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:0}")]
         [Display(Name = "Checking Goal")]
-        public int CheckingGoal { get; set; }
+        public decimal CheckingGoal { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0}")]
         [Display(Name = "Checking Actual")]
-        public Product CheckingActual { get; set; }
+        public decimal CheckingActual { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:0.##}%")]
+        [Display(Name = "Checking Percentage")]
+        public decimal CheckingPercentage { get; set; }
 
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
-        [Display(Name = "Start Date")]
+        [Display(Name = "End Date")]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
 

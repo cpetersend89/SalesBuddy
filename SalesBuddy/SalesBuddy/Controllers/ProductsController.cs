@@ -84,7 +84,7 @@ namespace SalesBuddy.Controllers
             }
             return View(product);
         }
-
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,7 +98,7 @@ namespace SalesBuddy.Controllers
             }
             return View(product);
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductId,ProductType,CreatedDate,AutoLoan,MortgageLoan,CreditCard,CheckingAccount,UserEmail")]Product product)
@@ -122,7 +122,7 @@ namespace SalesBuddy.Controllers
             }
             return View(product);
         }
-
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -136,7 +136,7 @@ namespace SalesBuddy.Controllers
             }
             return View(product);
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
@@ -144,14 +144,30 @@ namespace SalesBuddy.Controllers
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
+            if (product.AutoLoan > 0)
+            {
+                GoalsController.GetAutoActual(product.UserEmail);
+            }
+            if (product.MortgageLoan > 0)
+            {
+                GoalsController.GetMortgageActual(product.UserEmail);
+            }
+            if (product.CreditCard > 0)
+            {
+                GoalsController.GetCreditCardActual(product.UserEmail);
+            }
+            if (product.CheckingAccount > 0)
+            {
+                GoalsController.GetCheckingActual(product.UserEmail);
+            }
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Product product)
@@ -175,6 +191,22 @@ namespace SalesBuddy.Controllers
                 };
                 db.Products.Add(_product);
                 db.SaveChanges();
+                if (_product.AutoLoan > 0)
+                {
+                    GoalsController.GetAutoActual(_product.UserEmail);
+                }
+                if (_product.MortgageLoan > 0)
+                {
+                    GoalsController.GetMortgageActual(_product.UserEmail);
+                }
+                if (_product.CreditCard > 0)
+                {
+                    GoalsController.GetCreditCardActual(_product.UserEmail);
+                }
+                if (_product.CheckingAccount > 0)
+                {
+                    GoalsController.GetCheckingActual(_product.UserEmail);
+                }
                 return RedirectToAction("Index");
             }
 

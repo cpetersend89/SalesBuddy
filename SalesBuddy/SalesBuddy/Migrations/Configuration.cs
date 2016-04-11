@@ -19,25 +19,34 @@ namespace SalesBuddy.Migrations
 
         protected override void Seed(SalesBuddy.Models.ApplicationDbContext context)
         {
-            //if (!(context.Users.Any(u => u.UserName == "cpetersensalesbuddy@gmail.com")))
-            //{
-            //    RoleStore<IdentityRole> roleStore = new RoleStore<IdentityRole>(context);
-            //    RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(roleStore);
-            //    UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
-            //    UserManager<ApplicationUser> userManager = new ApplicationUserManager(userStore);
-            //    var userToInsert = new ApplicationUser
-            //    {
-            //        UserName = "cpetersensalesbuddy@gmail.com",
-            //        FirstName = "Christian",
-            //        LastName = "Petersen",
-            //        Email = "cpetersensalesbuddy@gmail.com",
-            //        EmailConfirmed = true
-            //    };
-            //    userManager.Create(userToInsert, password: "ltftso24it");
-            //    roleManager.Create(new IdentityRole { Name = "admin" });
-            //    userManager.AddToRole(userToInsert.Id, "admin");
+            if (!(context.Users.Any(u => u.UserName == "cpetersensalesbuddy@gmail.com")))
+            {
+                RoleStore<IdentityRole> roleStore = new RoleStore<IdentityRole>(context);
+                RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(roleStore);
+                UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
+                UserManager<ApplicationUser> userManager = new ApplicationUserManager(userStore);
+                var userToInsert = new ApplicationUser
+                {
+                    UserName = "cpetersensalesbuddy@gmail.com",
+                    FirstName = "Christian",
+                    LastName = "Petersen",
+                    Email = "cpetersensalesbuddy@gmail.com",
+                    EmailConfirmed = true
+                };
+                var userToInsert2 = new ApplicationUser
+                {
+                    UserName = "jsmithsalesbuddy@gmail.com",
+                    FirstName = "John",
+                    LastName = "Smith",
+                    Email = "jsmithsalesbuddy@gmail.com",
+                    EmailConfirmed = true
+                };
+                userManager.Create(userToInsert2, password: "pass1234");
+                userManager.Create(userToInsert, password: "pass1234");
+                roleManager.Create(new IdentityRole { Name = "admin" });
+                userManager.AddToRole(userToInsert.Id, "admin");
 
-            //}
+            }
         }
     }
 }

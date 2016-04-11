@@ -3,25 +3,59 @@
 @{
     ViewBag.Title = "Index";
 }
+<br/><br/><br/>
+<h4>Employee Goals</h4>
 
-<h2>Index</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <p>
+            @Html.ActionLink("Add Goals", "Create")
+        </p>
+    }
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.AutoGoal)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.AutoActual)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.AutoPercentage)
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.MortgageGoal)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MortgageActual)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.MortgagePercentage)
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.CreditCardGoal)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CreditCardActual)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCardPercentage)
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.CheckingGoal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckingActual)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CheckingPercentage)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartDate)
@@ -35,16 +69,43 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.AutoGoal)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.AutoActual)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoPercentage)
+        </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.MortgageGoal)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.MortgageActual)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.MortgagePercentage)
+        </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.CreditCardGoal)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.CreditCardActual)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditCardPercentage)
+        </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.CheckingGoal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckingActual)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckingPercentage)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartDate)
@@ -53,9 +114,27 @@
             @Html.DisplayFor(modelItem => item.EndDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GoalId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GoalId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GoalId })
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("admin"))
+                {
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.GoalId })
+                    </p>
+                }
+            }
+
+            | @Html.ActionLink("Details", "Details", new {id = item.GoalId}) |
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("admin"))
+                {
+                    <p>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.GoalId })
+                    </p>
+                }
+            }
+
         </td>
     </tr>
 }

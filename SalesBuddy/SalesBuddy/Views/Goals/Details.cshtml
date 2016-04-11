@@ -4,18 +4,49 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br /><br /><br />
 
 <div>
-    <h4>Goal</h4>
+    <h4>Goals</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.AutoGoal)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AutoGoal)
+            <font color="red">
+                @Html.DisplayFor(model => model.AutoGoal)
+            </font>
+        </dd>
+
+        <dt>
+
+            @Html.DisplayNameFor(model => model.AutoActual)
+        </dt>
+
+        <dd>
+            <font color="green">
+                @Html.DisplayFor(model => model.AutoActual)
+            </font>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoPercentage)
+        </dt>
+
+        <dd>
+            <font color="blue">
+                @Html.DisplayFor(model => model.AutoPercentage)
+            </font>
         </dd>
 
         <dt>
@@ -23,7 +54,29 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MortgageGoal)
+            <font color="red">
+                @Html.DisplayFor(model => model.MortgageGoal)
+            </font>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MortgageActual)
+        </dt>
+
+        <dd>
+            <font color="green">
+                @Html.DisplayFor(model => model.MortgageActual)
+            </font>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MortgagePercentage)
+        </dt>
+
+        <dd>
+            <font color="blue">
+                @Html.DisplayFor(model => model.MortgagePercentage)
+            </font>
         </dd>
 
         <dt>
@@ -31,7 +84,29 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreditCardGoal)
+            <font color="red">
+                @Html.DisplayFor(model => model.CreditCardGoal)
+            </font>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditCardActual)
+        </dt>
+
+        <dd>
+            <font color="green">
+                @Html.DisplayFor(model => model.CreditCardActual)
+            </font>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditCardPercentage)
+        </dt>
+
+        <dd>
+            <font color="blue">
+                @Html.DisplayFor(model => model.CreditCardPercentage)
+            </font>
         </dd>
 
         <dt>
@@ -39,7 +114,29 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CheckingGoal)
+            <font color="red">
+                @Html.DisplayFor(model => model.CheckingGoal)
+            </font>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingActual)
+        </dt>
+
+        <dd>
+            <font color="green">
+                @Html.DisplayFor(model => model.CheckingActual)
+            </font>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckingPercentage)
+        </dt>
+
+        <dd>
+            <font color="blue">
+                @Html.DisplayFor(model => model.CheckingPercentage)
+            </font>
         </dd>
 
         <dt>
@@ -61,6 +158,15 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GoalId }) |
+    @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("admin"))
+                {
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.GoalId }) |
+        </p>
+        }
+    }
+
     @Html.ActionLink("Back to List", "Index")
-</p>
+    </p>
